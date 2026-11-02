@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "test:bdd": "npm --prefix playwright-bdd-framework run test:bdd",
+    "test:bdd:smoke": "npm --prefix playwright-bdd-framework run test:bdd:smoke",
+    "test:bdd:html": "npm --prefix playwright-bdd-framework run test:bdd:html",
+    "test:bdd:headed": "npm --prefix playwright-bdd-framework run test:bdd:headed"
+  },
+  "devDependencies": {
+    "playwright-bdd": "^9.2.1"
+  }
+}
