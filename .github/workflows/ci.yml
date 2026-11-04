@@ -41,6 +41,11 @@ jobs:
           CI: true
           HEADLESS: true
           BROWSER: chromium
+          BASE_URL: ${{ secrets.BASE_URL || 'https://www.saucedemo.com/' }}
+          USERNAME: ${{ secrets.TEST_USERNAME || 'standard_user' }}
+          PASSWORD: ${{ secrets.TEST_PASSWORD || 'secret_sauce' }}
+          INVALID_USERNAME: ${{ secrets.INVALID_USERNAME || 'invalid_user' }}
+          INVALID_PASSWORD: ${{ secrets.INVALID_PASSWORD || 'invalid_password' }}
         run: npm run test:bdd:html
 
       - name: Upload test report

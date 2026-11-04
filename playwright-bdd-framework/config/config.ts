@@ -1,4 +1,5 @@
 import dotenv from 'dotenv';
+import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 
@@ -11,16 +12,18 @@ if (!/^[a-zA-Z0-9_-]+$/.test(testEnvironment)) {
 }
 
 const environmentFile = path.resolve(__dirname, `.env.${testEnvironment}`);
-const environmentResult = dotenv.config({ path: environmentFile });
+const environmentResult = fs.existsSync(environmentFile)
+  ? dotenv.config({ path: environmentFile })
+  : undefined;
 
-if (environmentResult.error) {
+if (environmentResult?.error) {
   throw new Error(
     `Could not load environment file "${environmentFile}": ${environmentResult.error.message}`,
     { cause: environmentResult.error }
   );
 }
 
-const environmentFileValues = environmentResult.parsed ?? {};
+const environmentFileValues = environmentResult?.parsed ?? {};
 
 function getEnvironmentVariable(name: string): string | undefined {
   const processValue = process.env[name]?.trim();

@@ -94,6 +94,18 @@ $env:TEST_ENV = "uat"
 npm run test:bdd
 ```
 
+### GitHub Actions environment
+
+The CI workflow uses the public SauceDemo sample account by default because local `.env` files are not committed. For a different test environment, add these secrets under **Settings → Secrets and variables → Actions**; configured secrets override the defaults:
+
+- `BASE_URL`
+- `TEST_USERNAME`
+- `TEST_PASSWORD`
+- `INVALID_USERNAME`
+- `INVALID_PASSWORD`
+
+The workflow maps `TEST_USERNAME` and `TEST_PASSWORD` to the framework's `USERNAME` and `PASSWORD` variables. If a local environment file exists, it is still loaded; process environment variables take precedence.
+
 ## E. Execute all BDD tests
 
 ```sh
