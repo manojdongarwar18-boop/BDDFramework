@@ -10,6 +10,26 @@ Given(
   }
 );
 
+Given(
+  'I navigate to the login view',
+  async function (this: CustomWorld): Promise<void> {
+    await this.loginPage.navigateToLoginPage();
+  }
+);
+
+When(
+  'I execute login with {string} and {string}',
+  async function (
+    this: CustomWorld,
+    username: string,
+    password: string
+  ): Promise<void> {
+    await this.loginPage.enterUsername(username);
+    await this.loginPage.enterPassword(password);
+    await this.loginPage.clickLogin();
+  }
+);
+
 When(
   'I enter valid username and password',
   async function (this: CustomWorld): Promise<void> {
@@ -44,5 +64,12 @@ Then(
   'I should see an invalid login error',
   async function (this: CustomWorld): Promise<void> {
     await this.loginPage.verifyInvalidLogin();
+  }
+);
+
+Then(
+  'I see the authentication error message',
+  async function (this: CustomWorld): Promise<void> {
+    await this.loginPage.verifyLockedOutError();
   }
 );

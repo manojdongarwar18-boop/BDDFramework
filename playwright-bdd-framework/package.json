@@ -17,8 +17,10 @@
     "playwright": "^1.56.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.65.0",
     "@types/node": "^22.15.30",
     "cross-env": "^7.0.3",
+    "playwright-bdd": "^9.2.1",
     "ts-node": "^10.9.2",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3"

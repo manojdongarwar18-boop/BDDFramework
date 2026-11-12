@@ -48,4 +48,15 @@ export class LoginPage {
       );
     }
   }
+
+  async verifyLockedOutError(): Promise<void> {
+    await this.loginError.waitFor({ state: 'visible' });
+    const errorMessage = await this.loginError.textContent();
+
+    if (!errorMessage?.includes('Sorry, this user has been locked out')) {
+      throw new Error(
+        `Expected a locked-out-user message, received: "${errorMessage ?? ''}".`
+      );
+    }
+  }
 }
